@@ -2,7 +2,12 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    hercules-ci-effects.url = "github:hercules-ci/hercules-ci-effects";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+    hercules-ci-effects = {
+      url = "github:hercules-ci/hercules-ci-effects";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     osx-kvm = {
       url = "github:kholia/OSX-KVM";
       flake = false;
